@@ -1,3 +1,9 @@
-<h2>Information about crypto market:</h2>
+<h3>Information about crypto market:</h3>
+
+<div *ngFor="let crypto of objectKeys(cryptoDataGlobal[0])">
+  <ul>
+    <li>{{ crypto }} : {{ cryptoDataGlobal[0][crypto] }}</li>
+  </ul>
+</div>
 
 <app-table></app-table>
