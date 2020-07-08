@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'crypto', component: CryptoDataComponent },
   { path: 'coin/:id', component: CoinDetailsComponent },
   { path: '', redirectTo: '/crypto', pathMatch: 'full' },
+  { path: '**', redirectTo: '/crypto', pathMatch: 'full' },
 ];
 
 @NgModule({
