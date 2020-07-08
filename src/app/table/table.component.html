@@ -2,9 +2,11 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <td *ngFor="let keys of objectKeys(allCoinsData[0])">
-        {{ keys }}
-      </td>
+      <th>Id</th>
+      <th>Symbol</th>
+      <th>Name</th>
+      <th>NameId</th>
+      <th>Rank</th>
     </tr>
   </thead>
   <tbody>
@@ -12,20 +14,11 @@
       <th scope="row">{{ coin.row_id }}</th>
       <td>{{ coin.id }}</td>
       <td>{{ coin.symbol }}</td>
-      <td>{{ coin.name }}</td>
+      <td>
+        <a [routerLink]="['/coin', coin.id]">{{ coin.name }}</a>
+      </td>
       <td>{{ coin.nameid }}</td>
       <td>{{ coin.rank }}</td>
-      <td>{{ coin.price_usd }}</td>
-      <td>{{ coin.percent_change_24h }}</td>
-      <td>{{ coin.percent_change_1h }}</td>
-      <td>{{ coin.percent_change_7d }}</td>
-      <td>{{ coin.price_btc }}</td>
-      <td>{{ coin.market_cap_usd }}</td>
-      <td>{{ coin.volume24 }}</td>
-      <td>{{ coin.volume24a }}</td>
-      <td>{{ coin.csupply }}</td>
-      <td>{{ coin.tsupply }}</td>
-      <td>{{ coin.msupply }}</td>
     </tr>
   </tbody>
 </table>
