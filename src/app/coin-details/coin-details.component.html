@@ -1,1 +1,5 @@
-<p>coin-details works!</p>
+<div *ngFor="let crypto of objectKeys(coinDetails[0])">
+  <ul>
+    <li>{{ crypto }} : {{ coinDetails[0][crypto] }}</li>
+  </ul>
+</div>
