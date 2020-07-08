@@ -17,7 +17,7 @@ export class CryptoDataComponent implements OnInit {
     this.apiService.sendGetRequest(this.API_URL).subscribe(
       (data: string[]) => {
         this.cryptoDataGlobal = data;
-        console.log('final:', this.cryptoDataGlobal);
+        console.log(this.cryptoDataGlobal);
       },
       (error) => {
         console.log(error);
