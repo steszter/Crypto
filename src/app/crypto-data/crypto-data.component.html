@@ -1,10 +1,28 @@
-<h3>Information about crypto market:</h3>
-
-<div *ngFor="let crypto of objectKeys(cryptoDataGlobal[0])">
-  <ul>
-    <li>{{ crypto }} : {{ cryptoDataGlobal[0][crypto] }}</li>
+<div class="d-flex">
+  <ul
+    ngbNav
+    #nav="ngbNav"
+    [(activeId)]="active"
+    class="nav-pills"
+    orientation="vertical"
+  >
+    <li ngbNavItem="top">
+      <a ngbNavLink>Information about crypto market</a>
+      <ng-template ngbNavContent>
+        <div *ngFor="let crypto of objectKeys(cryptoDataGlobal[0])">
+          <ul>
+            <li>{{ crypto }} : {{ cryptoDataGlobal[0][crypto] }}</li>
+          </ul>
+        </div>
+      </ng-template>
+    </li>
+    <li ngbNavItem="middle">
+      <a ngbNavLink>Coins</a>
+      <ng-template ngbNavContent>
+        <app-table></app-table>
+      </ng-template>
+    </li>
   </ul>
-</div>
 
-<h3>Coins:</h3>
-<app-table></app-table>
+  <div [ngbNavOutlet]="nav" class="ml-4"></div>
+</div>
