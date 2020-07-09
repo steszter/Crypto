@@ -1,33 +1,35 @@
-<table class="table table-striped" style="width: 500px; padding: 20px;">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th>Id</th>
-      <th>Symbol</th>
-      <th>Name</th>
-      <th>Name Id</th>
-      <th>Rank</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let coin of coins">
-      <th scope="row">{{ coin.row_id }}</th>
-      <td>{{ coin.id }}</td>
-      <td>{{ coin.symbol }}</td>
-      <td>
-        <a [routerLink]="['/coin', coin.id]">{{ coin.name }}</a>
-      </td>
-      <td>{{ coin.nameid }}</td>
-      <td>{{ coin.rank }}</td>
-    </tr>
-  </tbody>
-</table>
+<div *ngIf="coinsLoaded | async">
+  <table class="table table-striped" style="width: 500px; padding: 20px;">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th>Id</th>
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Name Id</th>
+        <th>Rank</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let coin of coins">
+        <th scope="row">{{ coin.row_id }}</th>
+        <td>{{ coin.id }}</td>
+        <td>{{ coin.symbol }}</td>
+        <td>
+          <a [routerLink]="['/coin', coin.id]">{{ coin.name }}</a>
+        </td>
+        <td>{{ coin.nameid }}</td>
+        <td>{{ coin.rank }}</td>
+      </tr>
+    </tbody>
+  </table>
 
-<div class="d-flex justify-content-between p-2">
-  <ngb-pagination
-    [collectionSize]="collectionSize"
-    [(page)]="page"
-    [pageSize]="pageSize"
-  >
-  </ngb-pagination>
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+      [collectionSize]="collectionSize"
+      [(page)]="page"
+      [pageSize]="pageSize"
+    >
+    </ngb-pagination>
+  </div>
 </div>

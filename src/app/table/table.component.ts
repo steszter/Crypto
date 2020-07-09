@@ -14,6 +14,7 @@ export class TableComponent implements OnInit {
   page = 1;
   pageSize = 20;
   collectionSize = 100;
+  coinsLoaded: Promise<boolean>;
 
   constructor(private apiService: ApiService) {}
 
@@ -24,6 +25,7 @@ export class TableComponent implements OnInit {
         this.allCoinsData = this.allCoins.data;
         console.log(this.allCoins);
         console.log(this.allCoinsData);
+        this.coinsLoaded = Promise.resolve(true);
       },
       (error) => console.log(error)
     );
