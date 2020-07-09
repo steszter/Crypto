@@ -7,7 +7,6 @@ import { ApiService } from '../api.service';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  API_URL = 'https://api.coinlore.net/api/tickers/?start=100&limit=100';
   allCoins;
   allCoinsData;
   page = 1;
@@ -18,8 +17,8 @@ export class TableComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.apiService.sendGetRequest(this.API_URL).subscribe(
-      (response: string[]) => {
+    this.apiService.sendGetRequestTickers().subscribe(
+      (response) => {
         this.allCoins = response;
         this.allCoinsData = this.allCoins.data;
         console.log(this.allCoins);
