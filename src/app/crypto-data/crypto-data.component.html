@@ -9,9 +9,9 @@
     <li ngbNavItem="top">
       <a ngbNavLink>Information about crypto market</a>
       <ng-template ngbNavContent>
-        <div *ngFor="let crypto of objectKeys(cryptoDataGlobal[0])">
+        <div *ngFor="let crypto of cryptoDataGlobal[0] | keyvalue">
           <ul>
-            <li>{{ crypto }} : {{ cryptoDataGlobal[0][crypto] }}</li>
+            <li>{{ crypto.key }} : {{ crypto.value }}</li>
           </ul>
         </div>
       </ng-template>

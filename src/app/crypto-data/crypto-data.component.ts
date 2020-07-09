@@ -8,8 +8,7 @@ import { ApiService } from '../api.service';
 })
 export class CryptoDataComponent implements OnInit {
   active = 'top';
-  cryptoDataGlobal = [];
-  objectKeys = Object.keys;
+  cryptoDataGlobal: string[] = [];
   API_URL = 'https://api.coinlore.net/api/global/';
 
   constructor(private apiService: ApiService) {}

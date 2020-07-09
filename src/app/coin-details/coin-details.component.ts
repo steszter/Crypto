@@ -9,9 +9,8 @@ import { ApiService } from '../api.service';
 })
 export class CoinDetailsComponent implements OnInit {
   API_URL = 'https://api.coinlore.net/api/ticker/?id=';
-  coinId;
-  coinDetails = [];
-  objectKeys = Object.keys;
+  coinId: string;
+  coinDetails: string[] = [];
 
   constructor(private route: ActivatedRoute, private apiService: ApiService) {}
 
@@ -20,7 +19,7 @@ export class CoinDetailsComponent implements OnInit {
       this.coinId = parameter.id;
     });
     this.apiService.sendGetRequest(this.API_URL + this.coinId).subscribe(
-      (data: any[]) => {
+      (data: string[]) => {
         this.coinDetails = data;
         console.log(this.coinDetails);
       },

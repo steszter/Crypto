@@ -9,9 +9,8 @@ import { ApiService } from '../api.service';
 })
 export class TableComponent implements OnInit {
   API_URL = 'https://api.coinlore.net/api/tickers/?start=100&limit=100';
-  objectKeys = Object.keys;
-  allCoins = [];
-  allCoinsData = [];
+  allCoins;
+  allCoinsData;
   page = 1;
   pageSize = 20;
   collectionSize = 100;
@@ -20,9 +19,9 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiService.sendGetRequest(this.API_URL).subscribe(
-      (data: any[]) => {
-        this.allCoins = data;
-        this.allCoinsData = this.allCoins['data'];
+      (response: string[]) => {
+        this.allCoins = response;
+        this.allCoinsData = this.allCoins.data;
         console.log(this.allCoins);
         console.log(this.allCoinsData);
       },
