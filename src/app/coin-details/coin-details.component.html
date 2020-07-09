@@ -1,4 +1,4 @@
-<div *ngFor="let crypto of coinDetails[0] | keyvalue">
+<div *ngFor="let crypto of coinDetails$ | async | keyvalue">
   <ul>
     <li>{{ crypto.key }} : {{ crypto.value }}</li>
   </ul>
