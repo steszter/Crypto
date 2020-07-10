@@ -1,5 +1,5 @@
 <div *ngIf="coinsLoaded | async">
-  <table class="table table-striped" style="width: 500px; padding: 20px;">
+  <table class="table" style="width: 500px; padding: 20px;" hover="true">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -7,7 +7,6 @@
         <th>Symbol</th>
         <th>Name</th>
         <th>Name Id</th>
-        <th>Rank</th>
       </tr>
     </thead>
     <tbody>
@@ -19,7 +18,6 @@
           <a [routerLink]="['/coin', coin.id]">{{ coin.name }}</a>
         </td>
         <td>{{ coin.nameid }}</td>
-        <td>{{ coin.rank }}</td>
       </tr>
     </tbody>
   </table>

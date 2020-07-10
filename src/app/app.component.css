@@ -3,11 +3,5 @@
 }
 #grad {
   height: 70px;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(91, 91, 145, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
+  background-image: url("cryptoimg.jpg");
 }
