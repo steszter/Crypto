@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { GlobalData } from '../interfaces/global.interfaces';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-crypto-data',
@@ -9,19 +9,11 @@ import { GlobalData } from '../interfaces/global.interfaces';
 })
 export class CryptoDataComponent implements OnInit {
   active = 'top';
-  cryptoDataGlobal: GlobalData[] = [];
+  cryptoDataGlobal$ = this.apiService
+    .sendGetRequestGlobal()
+    .pipe(map((response) => response[0]));
 
   constructor(private apiService: ApiService) {}
 
-  ngOnInit(): void {
-    this.apiService.sendGetRequestGlobal().subscribe(
-      (data) => {
-        this.cryptoDataGlobal = data;
-        console.log(this.cryptoDataGlobal);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
+  ngOnInit(): void {}
 }
