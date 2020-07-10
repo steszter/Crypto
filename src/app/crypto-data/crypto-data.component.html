@@ -1,28 +1,5 @@
-<div class="d-flex">
-  <ul
-    ngbNav
-    #nav="ngbNav"
-    [(activeId)]="active"
-    class="nav-pills"
-    orientation="vertical"
-  >
-    <li ngbNavItem="top">
-      <a ngbNavLink>Information about crypto market</a>
-      <ng-template ngbNavContent>
-        <div *ngFor="let crypto of cryptoDataGlobal$ | async | keyvalue">
-          <ul>
-            <li>{{ crypto.key }} : {{ crypto.value }}</li>
-          </ul>
-        </div>
-      </ng-template>
-    </li>
-    <li ngbNavItem="middle">
-      <a ngbNavLink>Coins</a>
-      <ng-template ngbNavContent>
-        <app-table></app-table>
-      </ng-template>
-    </li>
+<div *ngFor="let crypto of cryptoDataGlobal$ | async | keyvalue">
+  <ul>
+    <li>{{ crypto.key }} : {{ crypto.value }}</li>
   </ul>
-
-  <div [ngbNavOutlet]="nav" class="ml-4"></div>
 </div>
