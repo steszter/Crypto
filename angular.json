@@ -122,5 +122,8 @@
       }
     }
   },
-  "defaultProject": "crypto-api"
+  "defaultProject": "crypto-api",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

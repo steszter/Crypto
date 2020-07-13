@@ -1,37 +1,43 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, catchError, switchMap, tap } from 'rxjs/operators';
+import { select, Store } from '@ngrx/store';
+import {
+  selectCollectionType,
+  selectTickers,
+} from '../+state/crypto.selectors';
+import { ApiService } from '../api.service';
+import { loadTickers } from '../+state/crypto.actions';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
 })
-export class TableComponent {
+export class TableComponent implements OnInit {
   page = Number(this.route.snapshot.paramMap.get('page'));
   pageSize = 20;
-  collectionSize = 200;
-  allCoinsData$ = this.route.params.pipe(
-    switchMap((params) =>
-      this.apiService
-        .sendGetRequestTickers((params.page - 1) * this.pageSize)
-        .pipe(
-          tap((response) => (this.collectionSize = response.info.coins_num)),
-          map((response) => response.data),
-          catchError((err) => err)
-        )
-    )
-  );
+  collectionSize$ = this.store.pipe(select(selectCollectionType));
+  allCoinsData$ = this.store.pipe(select(selectTickers));
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private apiService: ApiService
+    private store: Store
   ) {}
+
+  ngOnInit() {
+    this.updateTickersData();
+  }
 
   pageChange(page: number) {
     this.page = page;
     this.router.navigate(['coins/', page]);
+    this.updateTickersData();
+  }
+
+  updateTickersData() {
+    this.store.dispatch(
+      loadTickers({ start: (this.page - 1) * this.pageSize })
+    );
   }
 }

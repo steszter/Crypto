@@ -23,7 +23,7 @@
 
 <div class="d-flex justify-content-between p-2">
   <ngb-pagination
-    [collectionSize]="collectionSize"
+    [collectionSize]="collectionSize$ | async"
     [page]="page"
     [pageSize]="pageSize"
     (pageChange)="pageChange($event)"
