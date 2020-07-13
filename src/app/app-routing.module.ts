@@ -6,7 +6,7 @@ import { TableComponent } from './table/table.component';
 
 const routes: Routes = [
   { path: 'crypto', component: CryptoDataComponent },
-  { path: 'coins', component: TableComponent },
+  { path: 'coins/:page', component: TableComponent },
   { path: 'coin/:id', component: CoinDetailsComponent },
   { path: '', redirectTo: '/crypto', pathMatch: 'full' },
   { path: '**', redirectTo: '/crypto', pathMatch: 'full' },

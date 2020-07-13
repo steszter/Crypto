@@ -15,7 +15,7 @@ export class ApiService {
     return this.httpClient.get<GlobalData[]>(`${API_URL}global/`);
   }
 
-  sendGetRequestTickers(start: number = 0, limit: number = 100) {
+  sendGetRequestTickers(start: number = 0, limit: number = 20) {
     return this.httpClient.get<Tickers>(
       `${API_URL}tickers/?start=${start}&limit=${limit}`
     );

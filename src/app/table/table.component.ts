@@ -1,44 +1,37 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, catchError, switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
 })
-export class TableComponent implements OnInit, OnDestroy {
-  allCoins;
-  allCoinsData;
-  page = 1;
+export class TableComponent {
+  page = Number(this.route.snapshot.paramMap.get('page'));
   pageSize = 20;
-  collectionSize = 100;
-  coinsLoaded: Promise<boolean>;
-  subscription: Subscription;
+  collectionSize = 200;
+  allCoinsData$ = this.route.params.pipe(
+    switchMap((params) =>
+      this.apiService
+        .sendGetRequestTickers((params.page - 1) * this.pageSize)
+        .pipe(
+          tap((response) => (this.collectionSize = response.info.coins_num)),
+          map((response) => response.data),
+          catchError((err) => err)
+        )
+    )
+  );
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private apiService: ApiService
+  ) {}
 
-  ngOnInit(): void {
-    this.subscription = this.apiService.sendGetRequestTickers().subscribe(
-      (response) => {
-        this.allCoins = response;
-        this.allCoinsData = this.allCoins.data;
-        this.coinsLoaded = Promise.resolve(true);
-      },
-      (error) => console.log(error)
-    );
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
-  get coins(): any[] {
-    return this.allCoinsData
-      .map((coin, i) => ({ row_id: i + 1, ...coin }))
-      .slice(
-        (this.page - 1) * this.pageSize,
-        (this.page - 1) * this.pageSize + this.pageSize
-      );
+  pageChange(page: number) {
+    this.page = page;
+    this.router.navigate(['coins/', page]);
   }
 }
