@@ -15,7 +15,7 @@ export const selectTickers = createSelector(
   (state) => state.tickers
 );
 
-export const selectCollectionType = createSelector(
+export const selectCollectionSize = createSelector(
   selectCryptoState,
   (state) => state.collectionSize
 );

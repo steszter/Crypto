@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import {
-  selectCollectionType,
+  selectCollectionSize,
   selectTickers,
 } from '../+state/crypto.selectors';
 import { ApiService } from '../api.service';
@@ -16,7 +16,7 @@ import { loadTickers } from '../+state/crypto.actions';
 export class TableComponent implements OnInit {
   page = Number(this.route.snapshot.paramMap.get('page'));
   pageSize = 20;
-  collectionSize$ = this.store.pipe(select(selectCollectionType));
+  collectionSize$ = this.store.pipe(select(selectCollectionSize));
   allCoinsData$ = this.store.pipe(select(selectTickers));
 
   constructor(
