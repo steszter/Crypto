@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CryptoFacade } from '../facade';
+import { CryptoFacade } from '../+state/facade';
 
 @Component({
   selector: 'app-table',
@@ -8,9 +8,9 @@ import { CryptoFacade } from '../facade';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  page = Number(this.route.snapshot.paramMap.get('page'));
+  page: number;
   pageSize = 20;
-  collectionSize$ = this.facade.CollectionSize$;
+  collectionSize$ = this.facade.collectionSize$;
   allCoinsData$ = this.facade.allCoinsData$;
 
   constructor(
@@ -20,12 +20,14 @@ export class TableComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.facade.updateTickersData(this.page, this.pageSize);
+    this.route.params.subscribe((params) => {
+      const { page } = params;
+      this.page = Number(page);
+      this.facade.updateTickersData(this.page, this.pageSize);
+    });
   }
 
   pageChange(page: number) {
-    this.page = page;
     this.router.navigate(['coins/', page]);
-    this.facade.updateTickersData(this.page, this.pageSize);
   }
 }

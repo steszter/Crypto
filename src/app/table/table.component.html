@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let coin of allCoinsData$ | async; let i = index">
-      <th scope="row">{{ i + (this.page - 1) * this.pageSize + 1 }}</th>
+      <th scope="row">{{ i + (page - 1) * pageSize + 1 }}</th>
       <td>{{ coin.id }}</td>
       <td>{{ coin.symbol }}</td>
       <td>

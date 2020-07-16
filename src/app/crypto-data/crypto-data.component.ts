@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CryptoFacade } from '../facade';
+import { CryptoFacade } from '../+state/facade';
 
 @Component({
   selector: 'app-crypto-data',

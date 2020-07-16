@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { ApiService } from '../api.service';
 import * as CryptoActions from './crypto.actions';
+import { initialState } from './crypto.reducer';
 
 @Injectable()
 export class CryptoEffects {

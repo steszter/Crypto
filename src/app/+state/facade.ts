@@ -4,19 +4,20 @@ import {
   selectTickers,
   selectGlobalData,
   selectTickerData,
-} from './+state/crypto.selectors';
+} from './crypto.selectors';
 import {
   loadTickers,
   loadGlobalData,
   loadTickerData,
-} from './+state/crypto.actions';
+  deleteTickerData,
+} from './crypto.actions';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CryptoFacade {
-  CollectionSize$ = this.store.pipe(select(selectCollectionSize));
+  collectionSize$ = this.store.pipe(select(selectCollectionSize));
   allCoinsData$ = this.store.pipe(select(selectTickers));
   cryptoDataGlobal$ = this.store.pipe(select(selectGlobalData));
   coinDetails$ = this.store.pipe(select(selectTickerData));
@@ -32,5 +33,9 @@ export class CryptoFacade {
   }
   loadTickerData(paramId: string) {
     this.store.dispatch(loadTickerData({ id: paramId }));
+  }
+
+  deleteTickerData() {
+    this.store.dispatch(deleteTickerData());
   }
 }

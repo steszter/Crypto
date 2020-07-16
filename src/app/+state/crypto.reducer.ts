@@ -69,5 +69,15 @@ export const reducer = createReducer(
   on(CryptoActions.loadTickerDataFailure, (state, action) => ({
     ...state,
     tickerDataLoading: false,
+  })),
+
+  on(CryptoActions.deleteTickerData, (state) => ({
+    ...initialState,
+  })),
+  on(CryptoActions.deleteTickerDataSuccess, (state, action) => ({
+    ...initialState,
+  })),
+  on(CryptoActions.deleteTickerDataFailure, (state, action) => ({
+    ...initialState,
   }))
 );

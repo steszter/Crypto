@@ -37,3 +37,12 @@ export const loadTickerDataFailure = createAction(
   '[Crypto] Load Ticker Data Failure',
   props<{ error: any }>()
 );
+
+export const deleteTickerData = createAction('[Crypto] Delete Ticker Data');
+export const deleteTickerDataSuccess = createAction(
+  '[Crypto] Delete Ticker Data Success'
+);
+export const deleteTickerDataFailure = createAction(
+  '[Crypto] Delete Ticker Data Failure',
+  props<{ error: any }>()
+);
