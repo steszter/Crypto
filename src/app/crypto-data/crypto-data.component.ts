@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
-import { map } from 'rxjs/operators';
-import { Store, select } from '@ngrx/store';
-import { loadGlobalData } from '../+state/crypto.actions';
-import { selectGlobalData } from '../+state/crypto.selectors';
+
+import { CryptoFacade } from '../facade';
 
 @Component({
   selector: 'app-crypto-data',
@@ -12,11 +9,11 @@ import { selectGlobalData } from '../+state/crypto.selectors';
 })
 export class CryptoDataComponent implements OnInit {
   active = 'top';
-  cryptoDataGlobal$ = this.store.pipe(select(selectGlobalData));
+  cryptoDataGlobal$ = this.facade.cryptoDataGlobal$;
 
-  constructor(private apiService: ApiService, private store: Store) {}
+  constructor(private facade: CryptoFacade) {}
 
   ngOnInit(): void {
-    this.store.dispatch(loadGlobalData());
+    this.facade.loadGlobalData();
   }
 }

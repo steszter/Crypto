@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { GlobalData } from '../interfaces/global.interfaces';
-import { Tickers, TickerData } from '../interfaces/tickers.interfaces';
+import { TickerData } from '../interfaces/tickers.interfaces';
 
 export const loadGlobalData = createAction('[Crypto] Load Global Data');
 export const loadGlobalDataSuccess = createAction(

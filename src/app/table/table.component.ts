@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
-import {
-  selectCollectionSize,
-  selectTickers,
-} from '../+state/crypto.selectors';
-import { ApiService } from '../api.service';
-import { loadTickers } from '../+state/crypto.actions';
+import { CryptoFacade } from '../facade';
 
 @Component({
   selector: 'app-table',
@@ -16,28 +10,22 @@ import { loadTickers } from '../+state/crypto.actions';
 export class TableComponent implements OnInit {
   page = Number(this.route.snapshot.paramMap.get('page'));
   pageSize = 20;
-  collectionSize$ = this.store.pipe(select(selectCollectionSize));
-  allCoinsData$ = this.store.pipe(select(selectTickers));
+  collectionSize$ = this.facade.CollectionSize$;
+  allCoinsData$ = this.facade.allCoinsData$;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private store: Store
+    private facade: CryptoFacade
   ) {}
 
   ngOnInit() {
-    this.updateTickersData();
+    this.facade.updateTickersData(this.page, this.pageSize);
   }
 
   pageChange(page: number) {
     this.page = page;
     this.router.navigate(['coins/', page]);
-    this.updateTickersData();
-  }
-
-  updateTickersData() {
-    this.store.dispatch(
-      loadTickers({ start: (this.page - 1) * this.pageSize })
-    );
+    this.facade.updateTickersData(this.page, this.pageSize);
   }
 }

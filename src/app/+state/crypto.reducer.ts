@@ -1,7 +1,7 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import * as CryptoActions from './crypto.actions';
 import { GlobalData } from '../interfaces/global.interfaces';
-import { Tickers, TickerData } from '../interfaces/tickers.interfaces';
+import { TickerData } from '../interfaces/tickers.interfaces';
 
 export const cryptoFeatureKey = 'crypto';
 

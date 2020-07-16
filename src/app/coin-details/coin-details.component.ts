@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Store, select } from '@ngrx/store';
-import { selectTickerData } from '../+state/crypto.selectors';
-import { loadTickerData } from '../+state/crypto.actions';
+import { CryptoFacade } from '../facade';
 
 @Component({
   selector: 'app-coin-details',
@@ -10,11 +8,11 @@ import { loadTickerData } from '../+state/crypto.actions';
   styleUrls: ['./coin-details.component.css'],
 })
 export class CoinDetailsComponent implements OnInit {
-  coinDetails$ = this.store.pipe(select(selectTickerData));
+  coinDetails$ = this.facade.coinDetails$;
 
-  constructor(private route: ActivatedRoute, private store: Store) {}
+  constructor(private route: ActivatedRoute, private facade: CryptoFacade) {}
 
   ngOnInit(): void {
-    this.store.dispatch(loadTickerData({ id: this.route.snapshot.params.id }));
+    this.facade.loadTickerData(this.route.snapshot.params.id);
   }
 }
