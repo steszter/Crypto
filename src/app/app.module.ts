@@ -15,6 +15,7 @@ import { CryptoEffects } from './+state/crypto.effects';
 import { TableComponent } from './table/table.component';
 import { cryptoFeatureKey, reducer } from './+state/crypto.reducer';
 import { localStorageSync } from 'ngrx-store-localstorage';
+import { NavbarComponent } from './navbar/navbar.component';
 
 export function localStorageSyncReducer(
   r: ActionReducer<any>
@@ -28,6 +29,7 @@ export function localStorageSyncReducer(
     CryptoDataComponent,
     TableComponent,
     CoinDetailsComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

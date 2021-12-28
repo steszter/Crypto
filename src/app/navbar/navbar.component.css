@@ -1,0 +1,18 @@
+#title,
+#coinLink {
+  color: white;
+}
+
+#title:hover,
+#coinLink:hover {
+  color: gray;
+}
+
+.navbar {
+  height: 70px;
+  background-image: url("cryptoimg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}

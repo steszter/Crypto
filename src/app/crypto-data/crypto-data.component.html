@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div *ngFor="let crypto of cryptoDataGlobal$ | async | keyvalue">
   <ul>
     <li>{{ crypto.key }} : {{ crypto.value }}</li>
